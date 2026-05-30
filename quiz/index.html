@@ -220,69 +220,64 @@ const BACKEND_URL = "https://script.google.com/macros/s/AKfycbzq8Qb9q0wNuuDdKkA0
 
 const QUESTIONS = [
   {
-    zh: "Q1. 哪個節日的傳統食物是粽子？",
-    en: "What festival is celebrated by eating zongzi (粽子)?",
+    q: "Q1. Which festival is celebrated by eating rice dumplings wrapped in bamboo leaves?",
     options: [
-      { en: "Lantern Festival",       zh: "元宵節" },
-      { en: "Mid-Autumn Festival",    zh: "中秋節" },
-      { en: "Dragon Boat Festival",   zh: "端午節" },
-      { en: "Chinese New Year",       zh: "農曆春節" }
+      "Lantern Festival",
+      "Mid-Autumn Festival",
+      "Dragon Boat Festival",
+      "Chinese New Year"
     ],
     correct: 2,
-    explain_zh: "粽子（zongzi）是端午節的傳統食物。中秋節是吃月餅，元宵節是吃湯圓。",
-    explain_en: "Zongzi (rice dumplings) are eaten at the Dragon Boat Festival."
+    explain_en: "Rice dumplings (called \"zongzi\") are the traditional food of the Dragon Boat Festival.",
+    explain_zh: "粽子（zongzi）是端午節的傳統食物。中秋節吃月餅、元宵節吃湯圓。"
   },
   {
-    zh: "Q2. 端午節人們最常做什麼活動？",
-    en: "What is the most famous activity at the Dragon Boat Festival?",
+    q: "Q2. What is the most famous activity at the Dragon Boat Festival?",
     options: [
-      { en: "Light lanterns",          zh: "提燈籠" },
-      { en: "Race dragon boats",       zh: "划龍舟" },
-      { en: "Fly kites",               zh: "放風箏" },
-      { en: "Watch fireworks",         zh: "看煙火" }
+      "Lighting paper lanterns",
+      "Racing long, dragon-shaped boats",
+      "Flying kites in the park",
+      "Watching fireworks at night"
     ],
     correct: 1,
-    explain_zh: "「划龍舟」(dragon boat racing) 是端午節最具代表性的活動。",
-    explain_en: "Dragon boat racing is the festival's signature activity."
+    explain_en: "Dragon boat racing is the festival's most iconic activity — that's where the name comes from.",
+    explain_zh: "划龍舟是端午節最具代表性的活動，節日的英文名就是這樣來的。"
   },
   {
-    zh: "Q3. 端午節紀念的是哪一位古代詩人？",
-    en: "The Dragon Boat Festival remembers which ancient poet?",
+    q: "Q3. The Dragon Boat Festival honors an ancient Chinese poet. What is his name?",
     options: [
-      { en: "Li Bai 李白",     zh: "唐代詩人" },
-      { en: "Du Fu 杜甫",      zh: "唐代詩人" },
-      { en: "Qu Yuan 屈原",    zh: "戰國時代詩人" },
-      { en: "Su Shi 蘇軾",     zh: "宋代詩人" }
+      "Li Bai",
+      "Du Fu",
+      "Qu Yuan",
+      "Su Shi"
     ],
     correct: 2,
-    explain_zh: "屈原（Qu Yuan）是戰國時代楚國的詩人，端午節是紀念他的節日。",
-    explain_en: "Qu Yuan was a poet from the Warring States period (over 2,000 years ago)."
+    explain_en: "Qu Yuan was a loyal minister and poet who lived over 2,000 years ago. The festival began as a way to remember him.",
+    explain_zh: "屈原（Qu Yuan）是戰國時代楚國的詩人與忠臣，端午節最初就是為了紀念他。"
   },
   {
-    zh: "Q4. 「粽子」(zongzi) 看起來是什麼樣子？",
-    en: "What does a zongzi look like?",
+    q: "Q4. What does a \"zongzi\" look like?",
     options: [
-      { en: "A round cake",                                  zh: "圓形蛋糕" },
-      { en: "A pyramid-shaped rice bundle in bamboo leaves", zh: "用竹葉包的三角形米飯" },
-      { en: "A flat noodle",                                 zh: "扁平的麵條" },
-      { en: "A bowl of soup",                                zh: "一碗湯" }
+      "A small, round, golden cake",
+      "A pyramid-shaped rice bundle wrapped in green leaves",
+      "A long, flat noodle in soup",
+      "A clear, round ball made of jelly"
     ],
     correct: 1,
-    explain_zh: "粽子是用竹葉或月桃葉包的三角錐形糯米飯。",
-    explain_en: "Zongzi are pyramid-shaped sticky-rice bundles wrapped in bamboo leaves."
+    explain_en: "A zongzi is a pyramid-shaped bundle of sticky rice wrapped in bamboo or reed leaves, often with filling inside.",
+    explain_zh: "粽子是用竹葉或月桃葉包的三角錐形糯米飯，裡面通常有餡料。"
   },
   {
-    zh: "Q5. 「端午節」的英文是？",
-    en: "What is the English name for 「端午節」?",
+    q: "Q5. What does a dragon boat look like?",
     options: [
-      { en: "Moon Festival",        zh: "月亮節" },
-      { en: "Lantern Festival",     zh: "燈籠節" },
-      { en: "Dragon Boat Festival", zh: "龍舟節" },
-      { en: "New Year Festival",    zh: "新年節" }
+      "A small fishing boat with one sail",
+      "A big white sailing ship",
+      "A long, narrow boat with a carved dragon's head at the front",
+      "A round bamboo raft"
     ],
     correct: 2,
-    explain_zh: "端午節的英文是 Dragon Boat Festival，因為划龍舟是最重要的傳統活動。",
-    explain_en: "We call it Dragon Boat Festival because of the iconic boat races."
+    explain_en: "A dragon boat is long and narrow, paddled by a team, with a carved dragon's head at the bow and a tail at the stern.",
+    explain_zh: "龍舟是又長又窄的舟船，由一隊人一起划，船頭雕著龍頭、船尾是龍尾。"
   }
 ];
 
@@ -310,15 +305,11 @@ function buildQuiz(){
   form.innerHTML = QUESTIONS.map((q, qi) => `
     <div class="panel q">
       <div class="qnum">QUESTION ${qi+1} / ${QUESTIONS.length}</div>
-      <div class="qtext">${esc(q.zh)}</div>
-      <div class="qen en">${esc(q.en)}</div>
+      <div class="qtext en">${esc(q.q)}</div>
       ${q.options.map((o, oi) => `
         <label class="opt" data-q="${qi}" data-o="${oi}">
           <input type="radio" name="q${qi}" value="${oi}">
-          <div class="lbl">
-            <span class="en">${esc(o.en)}</span>
-            <span class="zh">${esc(o.zh)}</span>
-          </div>
+          <div class="lbl en">${esc(o)}</div>
         </label>
       `).join("")}
     </div>
@@ -384,7 +375,7 @@ $("#submit-btn").addEventListener("click", async () => {
 function optLabel(qi){
   const ai = state.answers[qi];
   if (ai == null) return "";
-  return QUESTIONS[qi].options[ai].en;
+  return QUESTIONS[qi].options[ai];
 }
 
 // ---------------- result ----------------
@@ -409,24 +400,21 @@ function renderResult(){
     return `
       <div class="panel q review ${ok?'correct':'wrong'}">
         <span class="verdict ${ok?'ok':'ng'}">${ok ? "✓  CORRECT" : "✗  INCORRECT"}</span>
-        <div class="qtext">${esc(q.zh)}</div>
-        <div class="qen en">${esc(q.en)}</div>
+        <div class="qtext en">${esc(q.q)}</div>
         ${!ok ? `
           <div class="answer your-ans">
-            <b>你的答案 Your answer：</b>
-            <span class="lbl-en">${esc(yourOpt.en)}</span> · ${esc(yourOpt.zh)}
+            <b>Your answer：</b>
+            <span class="lbl-en">${esc(yourOpt)}</span>
           </div>
         ` : ``}
         <div class="answer correct-ans">
-          <b>正確答案 Correct：</b>
-          <span class="lbl-en">${esc(correctOpt.en)}</span> · ${esc(correctOpt.zh)}
+          <b>Correct answer：</b>
+          <span class="lbl-en">${esc(correctOpt)}</span>
         </div>
-        ${!ok ? `
-          <div class="answer explain">
-            <b>解說 Why：</b> ${esc(q.explain_zh)}
-            <div class="en" style="margin-top:.25rem;font-style:italic;color:#7a5a00">${esc(q.explain_en)}</div>
-          </div>
-        ` : ``}
+        <div class="answer explain">
+          <b>Explanation：</b> ${esc(q.explain_en)}
+          <div class="zh" style="margin-top:.25rem;color:#5b4500">${esc(q.explain_zh)}</div>
+        </div>
       </div>
     `;
   }).join("");

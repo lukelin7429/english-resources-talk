@@ -22,11 +22,11 @@ const HEADER = [
   "班級 Class",
   "英文名字 English Name",
   "分數 Score",
-  "Q1: 哪個節日吃粽子？",
-  "Q2: 端午節最有名的活動？",
-  "Q3: 端午節紀念哪位詩人？",
-  "Q4: 粽子長什麼樣子？",
-  "Q5: 端午節的英文？",
+  "Q1 (festival from food)",
+  "Q2 (festival activity)",
+  "Q3 (the poet)",
+  "Q4 (zongzi description)",
+  "Q5 (dragon boat description)",
   "正確情形 Correctness (✓/✗)"
 ];
 
