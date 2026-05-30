@@ -1,20 +1,20 @@
 /**
  * Dragon Boat Festival Quiz — backend
- * 端午節英文小考 — 後台
+ * 端午節英文小考 — 後台（獨立 Apps Script 版本）
  *
- * Paste this entire file into Apps Script (Google Sheets → 擴充功能 Extensions → Apps Script)
- * 把整份檔案貼到 Google 試算表的 Apps Script 編輯器
- *
- * Then deploy as Web App:
- *   部署方式：
- *   1) 右上「部署 Deploy」→「新增部署作業 New deployment」
- *   2) 類型 Type：「網頁應用程式 Web app」
- *   3) 執行身分 Execute as：自己 Me (your Google account)
- *   4) 誰可以存取 Who has access：「任何人 Anyone」  ← 這一步很重要
- *   5) 部署 → 授權 → 複製「網頁應用程式網址 Web app URL」
- *
- * Then send that URL back to Luke / paste into quiz/index.html as BACKEND_URL.
+ * 用法：
+ *   1) 到 sheets.new 建一張新的 Google Sheet
+ *   2) 從網址複製 Sheet ID：docs.google.com/spreadsheets/d/【這一段】/edit
+ *   3) 把整份檔案貼到 script.google.com（新增專案）→ 把下面 SHEET_ID 換成你的
+ *   4) 上方下拉選單選 _smokeTest → ▶ Run → 授權 → 看 Sheet 出現一筆 TEST 資料
+ *   5) 右上 Deploy → New deployment → 類型 Web app
+ *      Execute as: Me ／ Who has access: Anyone
+ *      → 複製 Web app URL 給 Luke
  */
+
+// ====== 設定：貼上你的 Google Sheet ID ======
+const SHEET_ID   = "PASTE_YOUR_SHEET_ID_HERE";
+// ===========================================
 
 const SHEET_NAME = "Quiz Responses";
 const HEADER = [
@@ -38,7 +38,7 @@ function doGet(e) {
 
 function doPost(e) {
   try {
-    const ss = SpreadsheetApp.getActive();
+    const ss = SpreadsheetApp.openById(SHEET_ID);
     let sheet = ss.getSheetByName(SHEET_NAME);
     if (!sheet) {
       sheet = ss.insertSheet(SHEET_NAME);
@@ -50,10 +50,10 @@ function doPost(e) {
         .setFontWeight("bold")
         .setBackground("#0A1F5C")
         .setFontColor("#FCC30B");
-      sheet.setColumnWidth(1, 160); // timestamp
-      sheet.setColumnWidth(2, 140); // class
-      sheet.setColumnWidth(3, 140); // name
-      sheet.setColumnWidth(4, 70);  // score
+      sheet.setColumnWidth(1, 160);
+      sheet.setColumnWidth(2, 140);
+      sheet.setColumnWidth(3, 140);
+      sheet.setColumnWidth(4, 70);
     }
     const p = e && e.parameter ? e.parameter : {};
     sheet.appendRow([
@@ -79,9 +79,8 @@ function doPost(e) {
 }
 
 /**
- * Optional helper: run this once from the editor to verify Sheet write permissions
- * before deploying the Web App. It appends a test row.
- * 選用：部署前可以先在編輯器跑這個函式，確認權限與寫入正常。
+ * 選用：部署前可以先跑這個函式，確認權限與寫入正常。
+ * 編輯器上方下拉選單選 _smokeTest → 按 ▶ Run
  */
 function _smokeTest() {
   doPost({
